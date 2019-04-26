@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // setTimeout()
+
+        function test(){
+            this.name = "keke";
+            setTimeout(()=>{
+                console.log(this);
+            }, 100);
+        }
+        
+        // 当匿名函数没有定义this的时候，它会找到外层的最近的this
+        window.test();
+
+
+        function Person(){
+            this.name = "aaaaa";
+        }
+        // Person.prototype.grent = function(){
+        //     console.log(this);
+        // }
+        Person.prototype.grent = ()=>{
+            console.log(this.name);
+        }
+        var person = new Person();
+        person.grent();
+
+    </script>
+</body>
+</html>

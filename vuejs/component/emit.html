@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 子作用域 -->
+    <div id="app">
+        total: {{total}}
+        <keke-emit @addcounter="getTotal" @minucounter="getTotal"></keke-emit>
+    </div>
+    <script>
+        Vue.component("keke-emit",{
+            template: "<div><button @click='add'>+</button><button @click='minu'>-</button></div>",
+            data(){
+                return {
+                    counter : 0
+                }
+            },
+            methods: {
+                add:function(){
+                    this.counter++;
+                    // 相当于调用父类 getTotal函数
+                    this.$emit("addcounter",this.counter);
+                },
+                minu:function(){
+                    this.counter--;
+                    // 注意全小写，大写会出错
+                    this.$emit("minucounter",this.counter);
+                }
+            }
+        });
+        var app = new Vue({
+            el: "#app",
+            data :{
+                total: 0
+            },
+            methods: { //事件源
+                getTotal:function(total){
+                    this.total = total;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

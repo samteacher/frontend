@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="../js\vue.js"></script>
+</head>
+<body>
+    
+<div id="app">
+    ${one+first}
+    <a href="http://www.baidu.com" target="_blank">${link}</a>
+    <span v-pre>${ahref}</span>
+</div>
+
+<div id="app1">
+    <!--# 如果想显示{{ }}标签，而不进行替换，使用v-pre即可调过这个元素和它的子元素的编译过程 #-->
+    <span v-pre>{{ 这里的内容不会被编译 }}</span>
+    <span v-html="link"></span>
+</div>
+
+<script>
+    var app = new Vue({
+        el:"#app",
+        // 分隔符，修改vue默认的双大括号{{}}
+        delimiters: ['${', '}'],
+        data:{
+            one:11,
+            first :12,
+            link:"去百度",
+            ahref:"http://www.luoo.net"
+        }
+    });
+
+    var app1 = new Vue({
+        el:'#app1',
+        data: {
+            link:'<a href="#" rel="external nofollow" >这是一个连接</a>'
+        }
+    })
+</script>
+</body>
+</html>

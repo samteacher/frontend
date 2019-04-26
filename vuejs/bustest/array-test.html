@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [13,34,24,98,102,77];
+        // find找到数组中第一个满足条件的元素
+        let arrs = arr.find(function(element){
+            return element > 30;
+        });
+        console.log(arrs.toString());
+
+        // findIndex找到数组中第一个满足条件元素的索引
+        let index = arr.findIndex(function(element){
+            return element > 80;
+        });
+        console.log(index);
+
+        // fill() 一个固定值填充数组，通常用来初始化一个新的array数组
+        let newArr = new Array(5);
+        newArr.fill(arrs);
+        console.log(newArr.toString())
+
+        // keys() 返回数组中索引
+        for (let a of arr.keys()) {
+            console.log(a);
+        }
+
+        // values() 返回数组中的值
+        for (let a of arr.values()) {
+            console.log(a);
+        }
+
+        // 对数组键值的遍历
+        for (let a of arr.entries()) {
+            // console.log(a)
+            console.log(a[0]+"---"+a[1]);
+        }
+
+    </script>
+</body>
+</html>

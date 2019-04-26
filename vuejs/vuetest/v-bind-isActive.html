@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .active{background:red;}
+        .padd{padding:20px 0;}
+        .ft32{font-size: 32px;}
+    </style>
+</head>
+<body>
+    <!--  v-bind --- class 的时候，会把class和v-bind:class进行合并  -->
+    <div id="app">
+        <div class="padd ft32" :class="{'active':isActive}">我是一个div1</div>
+        <div class="padd ft32" :class="{'active':isActive}">我是一个div2</div>
+        <!--  数组写法和三目运算符  -->
+        <div class="ft32" :class="[isActive?active:'',padd]">我是一个div3</div>
+        <div class="ft32" :class="[{'active':isActive},padd]">我是一个div4</div>
+        <button @click="changeColor">改变</button>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                isActive:true,
+                active:"active",
+                padd:"padd"
+            },
+            methods:{
+                changeColor(){
+                    this.isActive = !this.isActive;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

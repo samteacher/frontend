@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+    <style>
+    [v-cloak]{display: none}
+    </style>
+</head>
+<body>
+
+    <!--  内容涉及  ：  v-clock  v-text   v-once  v-model  v-if  v-else-if  v-else  -->
+    <div id="app" v-cloak>
+        <div>{{title}}</div>
+        <div v-text="title"></div>
+        <div v-once>{{num}}</div>
+
+        <hr/>
+        <div v-for="(name,phone,age,index) in student">
+            <span v-text="index"></span>
+            {{name}}==={{phone}}====={{age}}==={{student.sayHello()}}
+        </div>
+
+        <hr/>
+        <input type="text" v-model="num" />
+
+        <hr>
+        <span v-if="student.male == 0">女</span>
+        <span v-else-if="student.male == 1">男</span>
+        <span v-else-if="student.male == 2">保密</span>
+        <span v-else>其他</span>
+
+        <hr/>
+        <div v-if="isShow">我是一个盒子</div>    <!--  if  false删除节点  true显示节点  -->
+        <div v-show="isShow">我是一个盒子</div>  <!--  show  display:none/block  -->
+    </div>
+
+
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                title: "v-text测试",
+                num: 100,
+                student:{
+                    name: "xiaoyu",
+                    phone: "15935833641",
+                    age: "23",
+                    male: 1,
+                    sayHello(){
+                        return "i miss you";
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

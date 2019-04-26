@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="app">
+        {{title}}
+        <keke-text :arr="[1,2,3,4,5]" :ptitle="title"></keke-text>
+        <keke-text arr="[1,2,3,4,5]" name="我是一个自定义属性"></keke-text>
+    </div>
+    <script>
+        // Vue.extend 是一个组件扩展 常使用Vue.component({});
+        var Component = Vue.extend({
+            props:["ptitle","name","arr"],
+            template: "<div>{{message}} --  {{ptitle}}-- {{name}}  -- 数组的长度是：{{arr.length}}</div>",
+            data(){
+                return {
+                    message :"我是子组件内容...."
+                }
+            },
+            methods:{
+            }
+        });
+        Vue.component("keke-text",Component);
+        var app = new Vue({
+            el: "#app",
+            data: {
+                title: "Hello world"
+            }
+        });
+    </script>
+</body>
+</html>
