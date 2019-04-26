@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="app">
+        <h1>{{message}} {{name}}</h1>
+        <!-- <keke-props ptitle="子数据属性"></keke-props> -->
+        <keke-props :ptitle="message" :name="name"></keke-props>
+    </div>
+    <script>
+        Vue.component("keke-props",{
+            props:["ptitle","name"],
+            template: "<div>{{message}} --{{name}} --  {{age}} -- {{ptitle}}</div>",
+            data(){
+                return {
+                    message: "子数据",
+                    name: "子数据名称",
+                    age: 32
+                }
+            }
+        });
+        var app = new Vue({
+            el: "#app",
+            data: {
+                message: "父数据",
+                name: "父数据名称"
+            }
+        });
+    </script>
+</body>
+</html>

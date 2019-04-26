@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+    <style>
+        *{margin:0px;padding:5px 10px;font-size:24px;font-family: 'Courier New', Courier, monospace}
+        [v-cloak]{display: none;}
+        table{width:100%;border:1px solid #000;border-collapse: collapse;border-spacing: 0;empty-cells: show;}
+        th td{padding:8px 20px;border:1px solid #000;text-align: left;}
+        th{background: #fff;color: #555;font-weight: bold;white-space: nowrap}
+    </style>
+</head>
+<body>
+    <div id="app">
+            <table v-cloak border="1">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>商品名称</td>
+                        <td @click="sortPrice()">商品单价</td>
+                        <td>商品数量</td>
+                        <td>小计</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>  
+                <div v-if="goods.length < 0">
+                    <tbody>
+                        <tr v-for="(good,index) in goods">
+                            <td>{{good.id}}----{{index+1}}</td>
+                            <td>{{good.name}}</td>
+                            <td>{{good.price}}</td>
+                            <td>
+                                <button @click="countMinu(index)">-</button>
+                                <input type="text" v-model="good.count">
+                                <button @click="countAdd(index)">+</button>
+                            </td>
+                            <td>￥{{good.price *  good.count}}</td>
+                            <td><button @click="handleRemove(index)">删除</button></td>
+                        </tr>
+                    </tbody>
+                    <span>总价：{{totalPrice}}</span>
+                    <button @click.once="clearAll()">清除购物车</button>
+                </div> 
+            </table>
+    </div>
+
+    <script>
+        //computed  计算属性
+        var app = new Vue({
+            el:"#app",
+            data:{
+                title:"手机总价:",
+                sort:true,
+                goods:[
+                    {
+                        id:1,
+                        name:"ipone phone",
+                        price:1240,
+                        count:1
+                    },
+                    {
+                        id:2,
+                        name:"oppo phone",
+                        price:480,
+                        count:3
+                    },
+                    {
+                        id:3,
+                        name:"meizhu phone",
+                        price:630,
+                        count:1
+                    },
+                    {
+                        id:4,
+                        name:"sanxing phone",
+                        price:520,
+                        count:2
+                    }
+                ]
+            },
+            computed:{
+                totalPrice:function(){
+                    var total = 0;
+                    for(var i = 0;i<this.goods.length;i++){
+                        var good = this.goods[i];
+                        total += (good.price * good.count);
+                    }
+                    return total;
+                }
+            },
+            methods:{
+                clearAll:function(){
+                    this.goods = [];
+                },
+                handleRemove:function(index){
+                    this.goods.splice(index,1);
+                },
+                countAdd:function(index){
+                    this.goods[index].count = this.goods[index].count >= 10 ? 10 : ++this.goods[index].count;
+                },
+                countMinu:function(index){
+                    this.goods[index].count = this.goods[index].count <= 1 ? 1 : --this.goods[index].count;
+                },
+                sortPrice:function(){
+                    this.sort = !this.sort;
+                    // var that = this;
+                    // this.goods.sort(function(a,b){
+                    //     return that.sort ? a.price < b.price : b.price < a.price;
+                    // });
+                    
+                    //ES6的解决方法
+                    this.goods.sort((a,b) => {
+                        return this.sort ? a.price < b.price : b.price < a.price;
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

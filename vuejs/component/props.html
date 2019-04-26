@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{title}}
+        <keke-text></keke-text>
+        <keke-text ptitle = "我是一个自定义属性"></keke-text>
+        <keke-text :ptitle = "title"></keke-text>
+    </div>
+    <script>
+        Vue.component("keke-text",{
+            props: ["ptitle"], //自定义属性;属性名称
+            template: "<div>{{message}}==={{ptitle}}</div>",
+            data (){
+                return {
+                    message: "我是子组件的内容...."
+                };
+            }
+        });
+        var app = new Vue({
+            el: "#app",
+            data: {
+                title: "hello world"
+            }
+        });
+    </script>
+</body>
+</html>

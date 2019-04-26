@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <span>{{content}}</span>
+    <button @click="changeColor('我是新内容',$event)">改变</button>
+</div>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            content: "Hello Vue !!!"
+        },
+        methods: {
+            changeColor:function(text,e){
+                var buttonobj = e.target || e.srcElement;
+                buttonobj.style.fontSize = "24px";
+                this.content = text;
+            }
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- v-bind的简写 <a :href="url" :title="title" target="_blank">{{content}}</a> -->
+
+    <div id="app" v-if="isShow">
+    <!-- <div id="app" v-show="isShow"> -->
+        <a :href="url" :title="title" target="_blank">{{content}}</a>
+        <button @click="changeelement('这里是传的参数值1',$event)">改变它</button>
+        <button @click="changeelement('这里是传的参数值2',$event)">改变它2</button>
+        <button @click="ifShow">隐藏</button>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+               content:"去落网",
+               title:"去听音乐",
+               url:"http://www.luoo.net",
+               isShow: true
+            },
+            methods:{
+                changeelement(content,e){
+                    console.log(e);
+                    // 兼容写法
+                    var buttonobj = e.target || e.srcElement;
+                    buttonobj.style.background="red";
+                    // this.isShow = !this.isShow
+                    this.content = content;
+                },
+                ifShow:function(){
+                    this.isShow = !this.isShow;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
