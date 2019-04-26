@@ -1,6 +1,6 @@
 # frontend (前端)
 
-![avatar](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556257657735&di=90242f623c5b65bf27e631c2b0775d4f&imgtype=0&src=http%3A%2F%2Fask.qcloudimg.com%2Farticle-cover-image%2F2188212%2Fvvolq85cfa.jpeg)
+![avatar](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556258160391&di=74b63670c3c1227a87278838dbf96917&imgtype=0&src=http%3A%2F%2Fd2jq2hx2dbkw6t.cloudfront.net%2F161%2FScreenshot_10.png)
 
 前端开发技术
 
