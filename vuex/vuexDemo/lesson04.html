@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vuexdemo练习</title>
+    <script src="../bower_components/vue/dist/vue.min.js"></script>
+    <script src="../bower_components/vuex/dist/vuex.min.js"></script>
+</head>
+<body>
+<div id="app">
+    {{title}}
+    {{$store.getters.astate}}
+    <hr/>
+    <keke-component></keke-component>
+    <button @click="tadd">改变它</button>
+</div>
+<script>
+    // 1.actions单独使用没有任何意义,不能改变(状态)数据
+    // 2.mutations 事件定义不能处理异步函数，不能执行ajax;不能在mutations中写vue-resource,axios
+    // 3.actions 可以异步执行处理
+
+    Vue.component("keke-component", {
+        template: "<div>{{this.$store.state.count}}----{{store.state.count}}</div>"
+    });
+    const store = new Vuex.Store({
+        state: {
+            count: 0
+        },
+        mutations: {
+            add: function (nums) {
+                nums.count++;
+            }
+        },
+        actions: {
+            add: function (content) {
+                content.commit("add");
+            }
+        },
+        getters: {
+            astate: function (nums) {
+                let count = nums.count+=100;
+                return count;
+            }
+        }
+    });
+    const app = new Vue({
+        el: "#app",
+        store: store,
+        data: {
+            title: "Hello vuex!!!"
+        },
+        methods: {
+            tadd: function () {
+                store.dispatch("add");
+            }
+        }
+    });
+</script>
+</body>
+</html>

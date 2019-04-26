@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VuexDemo练习</title>
+    <script src="../bower_components/vue/dist/vue.min.js"></script>
+    <script src="../bower_components/vuex/dist/vuex.min.js"></script>
+</head>
+<body>
+<div id="app">
+    商品名称：<input type="text" v-model="name">
+    商品价格：<input type="text" v-model="price">
+    <button @click="tadd">改变它</button>
+    <hr>
+    <ul>
+        <li v-for="item of store.state.items">{{item.name}}======{{item.price}}</li>
+    </ul>
+    <hr/>
+    <h1>总计：{{store.getters.count}}----总价：{{store.getters.totalPrice}}</h1>
+</div>
+<script>
+    const store = new Vuex.Store({
+        state: {
+            items: []
+        },
+        mutations: {
+            add: function (state, item) {
+                state.items.push(item);
+            }
+        },
+        actions: {
+            add: function (content, item) {
+                content.commit("add", item);
+            }
+        },
+        getters: {
+            count: function (state) {
+                return state.items.length;
+            },
+            totalPrice: function (state) {
+                let tPrice = 0;
+                for (item of state.items) {
+                    tPrice += item.price * 1;
+                }
+                return tPrice;
+            }
+        }
+    });
+    const app = new Vue({
+        el: "#app",
+        store: store,
+        data: {
+            name: "",
+            price: ""
+        },
+        methods: {
+            tadd: function () {
+                store.dispatch("add", {name: this.name, price: this.price});
+            }
+        }
+    });
+</script>
+</body>
+</html>

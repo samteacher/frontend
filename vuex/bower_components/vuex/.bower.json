@@ -1,0 +1,15 @@
+{
+  "name": "vuex",
+  "homepage": "https://github.com/vuejs/vuex",
+  "version": "3.1.0",
+  "_release": "3.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v3.1.0",
+    "commit": "7f592f5d446325f557e170b0dd8a3573715e20a3"
+  },
+  "_source": "https://github.com/vuejs/vuex.git",
+  "_target": "^3.1.0",
+  "_originalSource": "vuex",
+  "_direct": true
+}

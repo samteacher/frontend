@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vuexdemo练习</title>
+    <script src="../bower_components/vue/dist/vue.min.js"></script>
+    <script src="../bower_components/vuex/dist/vuex.min.js"></script>
+</head>
+<body>
+<div id="app">
+    {{title}}
+    <keke-component></keke-component>
+    <button @click="tadd">改变它</button>
+</div>
+<script>
+    // mutations 事件行为的定义和state数据的加工处理
+
+    Vue.component("keke-component", {
+        template: "<div>{{this.$store.state.count}}----{{store.state.count}}</div>"
+    });
+    const store = new Vuex.Store({
+        // 唯一数据源，就是数据的定义和入口
+        state: {
+            count: 0
+        },
+        // 事件行为的定义和state数据的加工处理
+        mutations: {
+            add: function (state) {
+                state.count++;
+            }
+        }
+    });
+    const app = new Vue({
+        el: "#app",
+        store: store,
+        data: {
+            title: "Hello vuex!!!"
+        },
+        methods: {
+            tadd: function () {
+                // mutations 的调用 进行触发
+                store.commit("add");
+            }
+        }
+    });
+</script>
+</body>
+</html>
