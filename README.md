@@ -4,7 +4,7 @@
 
 ## 前端开发技术
 
-### VUE.js
+### VUE.JS
 
 <div style="line-height:26px;">
   <p>1.<a href='https://cn.vuejs.org/v2/guide/'>vuejs的初始化</a></p>
