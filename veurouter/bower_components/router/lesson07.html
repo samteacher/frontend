@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-router学习</title>
+    <script src="../vue/dist/vue.js"></script>
+    <script src="../vue-router/dist/vue-router.js"></script>
+    <style>
+        * {padding: 0px;margin: 0px;}
+        #app {margin: 30px 0 0 20px;}
+        ul {width: 100%;}
+        .content {margin-top: 15px;}
+    </style>
+</head>
+<body>
+<div id="app">
+    <nav>
+        <ul>
+            <li v-for="student of students">
+                <span>{{student.id}}=={{student.name}}=={{student.age}}</span>
+                == <a :href="'#/student/'+student.id+'/'+student.name+'/'+student.age+'/'+student.intro">查看详情</a>
+                == <router-link :to="{name: 'Student',params:{id:student.id,name:student.name,age:student.age,intro:student.intro}}">查看明细</router-link>
+            </li>
+        </ul>
+    </nav>
+    <div class="content">
+        <router-view></router-view>
+    </div>
+</div>
+<script>
+    // 传参与动态路由
+    const studentComponent = {
+        template: "<div>{{student.id}}=={{student.name}}=={{student.age}}=={{student.intro}}</div>",
+        computed: {
+            student: function () {
+                let paramId = this.$route.params.id;
+                let paramName = this.$route.params.name;
+                let ageNum = this.$route.params.age;
+                let intros = this.$route.params.intro;
+                // 数据库查询，根据用户对应ID查明细信息
+                return {
+                    id: paramId,
+                    name: paramName,
+                    age: ageNum,
+                    intro: intros
+                }
+            }
+        },
+        // watch 路由监听
+        watch: {
+            $route:function (to,from) {
+                console.log(to);
+                console.log(from);
+            }
+        }
+    }
+    const router = new VueRouter({
+        routes: [{
+            path: "/student/:id/:name/:age/:intro",
+            name: 'Student',
+            component: studentComponent
+        }]
+    });
+    var app = new Vue({
+        el: "#app",
+        // router注册vue过程，注册以后生成一个$router对象，$route当前请求的路由，可以获取对应的参数 this.$route.params.id
+        router,
+        data: {
+            // 模拟数据
+            students: [
+                {id: 1, name: "jery", age: 12, intro: "我是一个小孩子"},
+                {id: 2, name: "keke", age: 22, intro: "我是一个学生"},
+                {id: 3, name: "sam", age: 32, intro: "我是一个老师"},
+                {id: 4, name: "arry", age: 42, intro: "我是一个家长"}
+            ]
+        }
+    });
+</script>
+</body>
+</html>

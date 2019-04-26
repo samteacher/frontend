@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-router学习</title>
+    <script src="../vue/dist/vue.js"></script>
+    <script src="../vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1>{{title}}</h1>
+    <a href="#/context">查看详情</a>
+    <hr/>
+    <div class="content">
+        <router-view></router-view>
+    </div>
+</div>
+<script>
+    // Router路由传递参数
+    const contextComponent = {
+        // 3.对象模式
+        props: ['id','name','age'],
+        template: "<div>我的编号是：{{id}}，我的名字：{{name}}，我的年龄:{{age}}</div>",
+    }
+    const router = new VueRouter({
+        routes: [{
+            path: "/context",
+            component: contextComponent,
+            // 开发中，如果有不动的内容，可以使用 props{...,...}
+            props: {id:"1000",name:"zhangsan",age: 99}
+            // 开发中使用 props: true
+            // props: true
+        }]
+
+    });
+    const app = new Vue({
+        el: "#app",
+        router,
+        data: {
+            title: "Hello world"
+        }
+    });
+</script>
+</body>
+</html>

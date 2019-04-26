@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-router学习</title>
+    <script src="../vue/dist/vue.js"></script>
+    <script src="../vue-router/dist/vue-router.js"></script>
+    <style>
+        *{margin:0px;padding:0px;font-size:24px;line-height:100px;text-align:center;color:#5cb85c;}
+        .header{width:100%;background:#ccc;height:100px;}
+        .banner{width:40%;float:left;background:#ccc;margin: 10px 10px 10px 0;height:100px}
+        .context{width:58%;float:left;background:#ccc;margin: 10px 0 10px 0;height:100px}
+        .footer{width:100%;background:#ccc;height:100px;clear:both;}
+    </style>
+</head>
+<body>
+ <div id="app">
+    <div class="container">
+        <router-view class="view header" name="header"></router-view>
+        <router-view class="view banner" name="banner"></router-view>
+        <router-view class="view context" name="context"></router-view>
+        <router-view class="view footer" name="footer"></router-view>
+    </div>
+    <div class="content">
+        <router-view></router-view>
+    </div>
+</div>
+<script>
+    // 路由命名视图
+    const router = new VueRouter({
+        routes: [{
+            path: "/",
+            components: {
+                header: {
+                    template: "<div class=\"header\">header</div>"
+                },
+                banner: {
+                    template: "<div class=\"banner\">banner</div>"
+                },
+                context: {
+                    template: "<div class=\"context\">context</div>"
+                },
+                footer: {
+                    template: "<div class=\"footer\">footer</div>"
+                },
+                default: {
+                    template: "<h1>我是默认的</h1>"
+                }
+            }
+        },{
+            path: "/context",
+            component: {
+                template: "<div>我会进入到没有名字的视图....</div>"
+            }
+        }]
+    });
+    var app = new Vue({
+        el: "#app",
+        router
+    });
+</script>
+</body>
+</html>

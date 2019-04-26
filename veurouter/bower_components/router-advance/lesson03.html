@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-router学习</title>
+    <script src="../vue/dist/vue.js"></script>
+    <script src="../vue-router/dist/vue-router.js"></script>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4078c0;
+        }
+
+        .container ul {
+            margin-top: 20px;
+        }
+
+        .container ul li {
+            float: left;
+            list-style: none;
+            font-size: 16px;
+            margin: 0 0 15px 15px;
+        }
+
+        .context {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <a href="#/detail/1/keke">查看明细</a>
+    <div class="container">
+        <router-view></router-view>
+    </div>
+</div>
+<script>
+    // 再谈 params 和 query
+    // /detail/1/keke 这类型使用 route.params
+    // /detail?id=1&name=keke 这类型使用 route.query
+    const navComponent = {
+        template: "<div>我是一个模板</div>"
+    };
+    const detailComponent = {
+        props: ['id','name'],
+        template: "<div>{{id}}：我的名字是{{name}}</div>"
+    };
+    const router = new VueRouter({
+        routes: [{
+            path: "/",
+            component: navComponent
+        }, {
+            path: "/detail/:id/:name",
+            component: detailComponent,
+            props: function (route) {
+                return route.params;
+            }
+        }]
+    });
+    const app = new Vue({
+        el: "#app",
+        router
+    });
+</script>
+</body>
+</html>

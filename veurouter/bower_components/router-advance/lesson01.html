@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-router学习</title>
+    <script src="../vue/dist/vue.js"></script>
+    <script src="../vue-router/dist/vue-router.js"></script>
+    <style>
+        *{margin:0px;padding:0px;}
+        a{text-decoration:none;color:#4078c0;}
+        .container ul{margin-top:20px;}
+        .container ul li{float:left;list-style:none;font-size:16px;margin:0 0 15px 15px;}
+        .context{padding:10px;}
+    </style>
+</head>
+<body>
+<div id="app">
+    <router-view></router-view>
+</div>
+<script>
+    // 再谈嵌套路由  子路由记得加上 router-view 和 children
+    const indexComponent = {
+        template: `<div>
+            我是首页
+            <router-view></router-view>
+        </div>`
+    };
+    const navComponent = {
+        template: `<div class="nav">
+        <div class="container">
+            <ul>
+                <li><a href="#/index">首页</a></li>
+                <li><a href="#/index/cmain">博客</a></li>
+                <li><a href="">论坛</a></li>
+                <li><a href="">关于</a></li>
+            </ul>
+        </div>
+        <hr style='clear:both;'/>
+        <div class="context">
+        <router-view></router-view>
+        </div>
+        </div>`
+    };
+    const router = new VueRouter({
+        routes: [{
+            path: "/",
+            component: navComponent,
+            // 子路由
+            children: [{
+                path: "index",
+                component: indexComponent,
+                children: [{
+                    path: "cmain",
+                    component: {
+                        template: "<div>我是首页的子页面...</div>"
+                    }
+                }]
+            }
+            ]
+        }]
+    });
+    const app = new Vue({
+        el: "#app",
+        router
+    });
+</script>
+</body>
+</html>

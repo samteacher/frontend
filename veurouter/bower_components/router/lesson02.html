@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-router学习</title>
+    <script src="../vue/dist/vue.js"></script>
+    <script src="../vue-router/dist/vue-router.js"></script>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        #app {
+            margin: 30px 0 0 20px;
+        }
+
+        ul {
+            width: 100%;
+        }
+
+        ul li {
+            list-style: none;
+            float: left;
+            margin-right: 30px;
+        }
+
+        .content {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h1 style="margin-bottom: 20px">{{title}}</h1>
+    <nav>
+        <ul>
+            <li><router-link to="/xiaoyi">小一</router-link></li>
+            <li><router-link to="/xiaoer">小二</router-link></li>
+            <li><router-link to="/xiaosan">小三</router-link></li>
+            <li><router-link to="/xiaosi">小四</router-link></li>
+            <li><button @click="goback">返回</button></li>
+        </ul>
+    </nav>
+    <div style="clear:both"></div>
+    <hr/>
+    <div class="content">
+        <router-view></router-view>
+    </div>
+</div>
+
+<script>
+    // goback 返回历史记录
+    const xiaoyi = {
+        template: "<div>李荣浩同款狗狗具体怎么回事？李荣浩是一位才华横溢的歌手，不管是自己写歌，还是自弹自唱都是信手拈来，但是他给粉丝印象最深刻的还是那双小眼睛。近日网络上有网友恶搞李荣浩小眼睛，晒出一张狗狗小眼睛图，标明是李荣浩同款仅售1元。一起来看看具体情况！</div>"
+    };
+    const xiaoer = {
+        template: "<div>这几日，某二手交易平台突现名为李荣浩同款狗狗，本来这也没什么，但是看到这价格，李荣也坐不住了，截图后发文反问:这是谁干的，为什么卖那么便宜。原来，卖家将价格定到1元，哈哈。</div>"
+    };
+    const xiaosan = {
+        template: "<div>图片左侧是李荣浩的照片，右侧则是一只不知名的小狗狗，卖家还给它画上了眉毛，据说画上眉毛价格贵一点，要是不画不得低于1元。远远的咋一看，两边的眼神真的是神似呢，相似度90%以上啊，有木有</div>"
+    };
+    const router = new VueRouter({
+        routes: [{
+            path: "/xiaoyi",
+            name: 'Xiaoyi',
+            component: xiaoyi
+        }, {
+            path: "/xiaoer",
+            name: 'Xiaoer',
+            component: xiaoer
+        }, {
+            path: "/xiaosan",
+            name: 'Xiaosan',
+            component: xiaosan
+        }, {
+            path: "/xiaosi",
+            name: 'Xiaosi',
+            component: {
+                template: "<div>此微博曝光后，网友纷纷围观并留言称：“哈哈对不起我笑死了，我居然想买一只。”“哈你好搞笑一男的！”“因为眼小不值钱啊</div>"
+            }
+        }]
+    });
+    var app = new Vue({
+        el: "#app",
+        // router 注册
+        router,
+        data: {
+            title: "Hello vue-router！！！"
+        },
+        methods: {
+            goback: function () {
+                // console.log(window.history);
+                window.history.length > 1
+                    ? this.$router.go(-1)
+                    : this.$router.push('/')
+            }
+        }
+    });
+</script>
+</body>
+</html>
