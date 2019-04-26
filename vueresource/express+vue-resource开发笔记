@@ -1,0 +1,43 @@
+Express+vue-resource开发项目（主要还是讲vue-resource）
+
+npm init
+cnpm install express
+cnpm install express --save-dev
+express -h
+express --hbs -v hbs
+cnpm install 全局安装
+npm run start
+
+cnpm install hbs --save-dev 安装hbs模板
+
+---------------------------------------------
+
+重点：将hbs模板修改为html格式
+1.加载hbs模板
+var hbs = require("hbs");
+
+2.引擎改造  将hbs修改为html
+app.set('view engine', 'html');
+
+3.运行hbs模板
+app.engine("html", hbs.__express);
+
+---------------------------------------------
+
+重点：跳转新的html页面
+1.复制一份新的路由js文件,修改内容
+var express = require('express');
+var router = express.Router();
+
+/* GET home page. */
+router.get('/vue-resource(用户的访问路径名称)', function (req, res, next) {
+    res.render('vueresource(添写要访问views路径下的哪个Html页面)', {title: 'Express', layout: null(禁止出现两个html、head和body)});
+});
+
+module.exports = router;
+
+2.在app.js文件中注册router
+// 加载vue-resource的模板
+var vueResource = require('./routes/vue-resource');
+// 用来给path注册中间函数的
+app.use("/vue", vueResource);

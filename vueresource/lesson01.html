@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VueResourceDemo</title>
+    <script src="bower_components/vue/dist/vue.min.js"></script>
+    <script src="bower_components/vue-resource/dist/vue-resource.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1>{{message}}</h1>
+    <ul>
+        <li v-for="(value,key) in result">{{key}}---{{value}}</li>
+    </ul>
+</div>
+<script>
+    // vue-resource 就是ajax异步操作
+    const app = new Vue({
+        el: "#app",
+        data: {
+            message: "Hello vue-resource!!!",
+            result: {}
+        },
+        mounted: function () {
+            this.$http.get('package.json').then(response => {
+                let result = response.body;
+                this.result = result;
+            }).then(err => {
+                console.log(err);
+            });
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VueResourceDemo</title>
+    <script src="bower_components/vue/dist/vue.min.js"></script>
+    <script src="bower_components/vue-resource/dist/vue-resource.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1>{{message}}</h1>
+    <ul>
+        <li v-for="(value,key) in result">{{key}}---{{value}}</li>
+    </ul>
+</div>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            message: "Hello vue-resource!!!",
+            result: {}
+        },
+        mounted: function () {
+            // this.$http.get() 底层实现原理
+            // this.$http({
+            //     // 请求服务器地址
+            //     url: "../../package.json",
+            //     // Http的请求方式,可以get/post
+            //     method: "get",
+            //     // request中body的数据，值可以是一个对象;也可以String类型,也可以是formdata对象
+            //     body: {},
+            //     // get方法在url上的参数;如：?page=1&pageSize=10
+            //     params: {},
+            //     // 可以设置request对象的header信息
+            //     headers: {},
+            //     // 请求超时设置，如果发送的异步请求超过timeout设置时间会自动断开; 默认是0,永久等待
+            //     timeout: 1500,
+            //     // 进度监听、文件上传和下载时使用
+            //     progress(event) {},
+            //     // true是否支持rest写法
+            //     emulateHTTP: true,
+            //     // 如果设置为true,代表把request中body的参数以application/x-www-urlencoded的方式发送,一般在post请求中有用
+            //     emulateJSON: true
+            // });
+
+            this.$http({
+                url: "package.json",
+                method: "get"
+            }).then(response => {
+                console.log(response.body);
+                console.log(response.json());
+                console.log(response.text);
+            }).catch(err => {
+                console.log(err);
+            });
+        }
+    });
+</script>
+</body>
+</html>
