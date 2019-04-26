@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="js\vue.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+        ${num}
+    </div>
+
+    <script>
+        var app = new Vue({
+            el:"#app",
+            delimiters: ['${', '}'],  //用来修改默认的表达式
+            data:{
+                num:10
+            },
+            created:function(){
+                console.log(this.num+"===="+this.$el);
+            },
+            mounted:function(){
+                console.log(this.$el);
+            },
+            beforeDesctory:function(){
+                console.log(this.num+"---------"+this.$el);
+            }
+        });
+    </script>
+</body>
+</html>

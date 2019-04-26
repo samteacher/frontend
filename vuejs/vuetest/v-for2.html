@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in items">
+               {{index+1}} : {{item}}
+            </li>
+        </ul>
+    </div>
+            
+    <div id="app1">
+        <ul>
+            <li v-for="(item,key) of items">
+                {{key}} : {{ item }}
+            </li>
+        </ul>
+    </div>
+
+    <div id="app2">
+        <ul>
+            <li v-for="(item,key,index) of items">
+                {{index+1}} : {{key}} : {{ item }}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                items:{
+                    text1:"第一组",
+                    text2:"第二组",
+                    text3:"第三组",
+                }
+            }
+        })
+
+        var vm = new Vue({
+            el:'#app1',
+            data:{
+                items:{
+                    text1:"第一组",
+                    text2:"第二组",
+                    text3:"第三组",
+                }
+            }
+        })
+
+        var vm = new Vue({
+            el:'#app2',
+            data:{
+                items:{
+                    text1:"第一组",
+                    text2:"第二组",
+                    text3:"第三组",
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

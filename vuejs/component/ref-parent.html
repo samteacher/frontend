@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="app">
+        <h1>{{message}}</h1>
+        <keke-message ref="childScope"></keke-message>
+        <button @click="getData" class="btn btn-info">获取子组件数据</button>
+    </div>
+    <script>
+        Vue.component("keke-message",{
+            template: "<div>{{message}} --- <button @click='getParent' class='btn btn-info'>获取父组件数据</button></div>",
+            data(){
+                return {
+                    message: "我是子组件",
+                    name: "keke",
+                    age: 23
+                }
+            },
+            methods: {
+                getParent: function(){
+                    var parentData = this.$parent;
+                    this.message = parentData.message;
+                }
+            }
+        });
+        var app = new Vue({
+            el: "#app",
+            data: {
+                message: "我是父组件"
+            },
+            methods: {
+                getData: function(){
+                    var childData = this.$refs.childScope;
+                    this.message = childData.message;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

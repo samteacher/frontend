@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        
+        // Map 
+
+        // map定义  一
+        var obj = {name:"keke"};
+        var obj2 = {'name':"keke2"};
+        var obj3 = {"name":"keke3"};
+        var obj4 = {obj:"keke4"};
+        console.log(obj4.obj); // 隐式调用toString()方法的过程
+
+        console.log("=================================");
+
+        // map定义  二
+        var maps = new Map([[1, 'one'], [2, 'two'], [3, 'three'], [obj,"four"]]);
+        console.log(maps.get(1));
+        console.log(maps.get(obj));
+        
+        // 添加元素
+        maps.set(5,"five");
+
+        console.log(maps);
+        console.log("Map长度："+maps.size);
+
+        // 判断元素是不否存在在map中
+        console.log(maps.has(maps.age));
+
+        // map遍历
+        maps.forEach(element => {
+            console.log("forEach-->"+element);
+        });
+
+        for (let key of maps.keys()) {
+            console.log(key);
+        }
+
+        for (let value of maps.values()) {
+            console.log(value);
+        }
+
+        for (let entri of maps.entries()) {
+            console.log(entri[0]+"--"+entri[1]);
+        }
+    </script>
+
+</body>
+</html>

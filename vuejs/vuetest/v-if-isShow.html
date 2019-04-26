@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="js\vue.js"></script>
+</head>
+<body>
+    
+    <div id="app" v-if="isShow">
+        {{title}}
+        <button v-on:click="changeTitle($event)">改变它</button>
+        <button @click="changeTitle($event)">改变它2</button>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                title: "哈哈",
+                isShow: true
+            },
+            methods :{
+                changeTitle:function(e){
+                    console.log(e)
+                    this.isShow = !this.isShow;
+                }
+            }
+        })
+    </script>
+</html>

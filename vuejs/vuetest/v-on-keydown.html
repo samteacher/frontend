@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <!--  capture   自外向里冒泡排序   -->
+    <!-- <div id="app" @click.capture.once.stop="getinfo2"> -->
+    <div id="app">
+       <!-- <button @click.capture.once.stop="getinfo">抽奖</button> -->
+       <button @keydown.enter.once="getinfo">enter抽奖</button>
+       <input onkeydown="key(event)" value="获取键码"/>
+    </div>
+
+    <script>
+        //获取键码
+        function key(e){
+            console.log(e.keyCode+"===="+e.which);
+        }
+
+        var app = new Vue({
+            el:"#app",
+            data:{
+                title:"去百度",
+                text:"去百度查资料",
+                url:"http://www.baidu.com"
+            },
+            methods:{
+                getinfo(){
+                    alert("开始抽奖了");
+                },
+                getinfo2(){
+                    alert("开始抽奖了222");
+                }
+            }
+        });
+    </script>
+</body>
+</html>

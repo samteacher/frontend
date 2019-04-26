@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        ES6 块使用域
+        let const
+    -->
+    <script>
+        // 完善之后 语法编译失败
+        var flag = true;
+        if(flag){
+            let num = 100;
+            console.log(num);
+        }
+        // 语法编译失败
+        // console.log(num);
+
+
+        // 块级作用域 if for循环中
+        // var flag = true;
+        // if(flag){
+               // 局部作用域
+        //     var num = 100;
+        //     console.log(num);
+        // }
+        // console.log(num);
+
+
+        // 这种编译通过，不正常
+        // var a = 10;
+        // var a = 10;
+
+        // 使用let后，编译失败
+        let a = 10;
+        let a = 10;
+        console.log(a);
+       
+
+    </script>
+</body>
+</html>
