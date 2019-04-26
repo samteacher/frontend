@@ -2,7 +2,9 @@
 
 ![avatar](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556258160391&di=74b63670c3c1227a87278838dbf96917&imgtype=0&src=http%3A%2F%2Fd2jq2hx2dbkw6t.cloudfront.net%2F161%2FScreenshot_10.png)
 
-前端开发技术
+## 前端开发技术
+
+### VUE.js
 
 <div style="line-height:26px;">
   <p>1.<a href='https://cn.vuejs.org/v2/guide/'>vuejs的初始化</a></p>
@@ -11,6 +13,8 @@
   <p>4.<a href='https://github.com/pagekit/vue-resource' target='_blank'>vue-resource</a>及<a href='http://www.axios-js.com/' target='_blank'>axios</a>的使用</p>
   <p>5.<a href='https://cn.vuejs.org/' target='_blank'>vue</a>+<a href='http://www.expressjs.com.cn/' target='_blank'>express</a>+<a href='http://www.axios-js.com/' target='_blank'>axios项目实战开发</a></p>
 </div>
+
+### ANGULAR.JS
 
 <div style="line-height:26px;">
   <p>1.<a href='https://www.angular.cn/' target='_blank'>Angular的使用</a></p>
