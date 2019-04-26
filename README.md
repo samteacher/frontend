@@ -1,4 +1,7 @@
 # frontend (前端)
+
+![avatar](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556257657735&di=90242f623c5b65bf27e631c2b0775d4f&imgtype=0&src=http%3A%2F%2Fask.qcloudimg.com%2Farticle-cover-image%2F2188212%2Fvvolq85cfa.jpeg)
+
 前端开发技术
 
 <div style="line-height:26px;">
